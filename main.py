@@ -67,6 +67,15 @@ def taskA(solution, answer):
 ###
 
 
+def compare_maps(soln_map, stu_map):
+    # Compare current stu_path with current soln_path
+    for i, soln_row in enumerate(soln_map):
+        if soln_row != stu_map[i]:
+            return False
+
+    return True
+
+
 def taskB(solution, answer):
     # Throw away first line - should be "Start - Find shortest paths:"
     solution.readline()
@@ -100,34 +109,34 @@ def taskB(solution, answer):
 
         line = answer.readline().strip()
 
+    # TODO: remove duplicates here
+
     # Find the correct paths (in RIP time complexity)
+    actual_correct_paths = len(soln_paths)
     correct_paths = 0
     for i, soln_path in enumerate(soln_paths):
-        match_found = True
+        match_found = False
 
         # Find the same path in stu_paths, if it exists
         for stu_path in stu_paths:
-            # Compare current stu_path with current soln_path
-            for j, soln_row in enumerate(soln_path):
+            if compare_maps(soln_path, stu_path) == True:
+                # stu_paths.remove(stu_path)
                 match_found = True
-                if soln_row != stu_path[j]:
-                    match_found = False
-                    break
-
-            # The current stu_path matches soln_path!
-            if match_found == True:
-                stu_paths.remove(stu_path)
                 break
 
         if match_found == True:
+            # soln_paths.remove(soln_path)
             correct_paths += 1
-            continue
-        elif match_found == False:
+        else:
             print(
                 f'{bcolors.FAIL} Could not find solution path {i} in student paths {bcolors.ENDC}')
 
+    # TODO - what happens if there are more student solns than our solns?
+    # if len(stu_paths) != 0:
+        # print(f'{len(stu_paths)} paths in the student paths were either not shortest paths, invalid or duplicates')
+
     # Calculate the mark for this phase
-    if correct_paths == len(soln_paths):
+    if correct_paths == actual_correct_paths:
         # Full marks
         b_mark = 50
         colour = bcolors.OKGREEN
