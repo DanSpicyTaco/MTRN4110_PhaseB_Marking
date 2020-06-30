@@ -162,7 +162,7 @@ def taskB(solution, answer):
         # Full marks
         b_mark = 50
         colour = bcolors.OKGREEN
-    elif correct_paths > 0:
+    elif correct_paths > 0 or valid_paths > 0:
         # Partial marks
         b_mark = 0
 
