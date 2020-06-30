@@ -14,19 +14,6 @@ Done - Map read!
 Start - Find shortest paths:
 start path - 0:
  --- --- --- --- --- --- --- --- ---
-| v   15  14  13| 10  9   8   7   6 |
-     ---                 ---        
-|           | 12  11    |   |     5 |
- ---             --- ---     ---    
-|       |   |   | 0   1   2   3   4 |
-         ---     --- --- ---        
-|   |                   |           |
-         ---         ---     ---    
-|   |           |           |       |
- --- --- --- --- --- --- --- --- ---
-done path - 0:
-start path - 1:
- --- --- --- --- --- --- --- --- ---
 | v             |                   |
      ---                 ---        
 | 15  14    |           |   |       |
@@ -36,6 +23,19 @@ start path - 1:
 |   | 12  11  10  9     | 5   4     |
          ---         ---     ---    
 |   |           | 8   7   6 |       |
+ --- --- --- --- --- --- --- --- ---
+done path - 0:
+start path - 1:
+ --- --- --- --- --- --- --- --- ---
+| v   15  14  13| 10  9   8   7   6 |
+     ---                 ---        
+|           | 12  11    |   |     5 |
+ ---             --- ---     ---    
+|       |   |   | 0   1   2   3   4 |
+         ---     --- --- ---        
+|   |                   |           |
+         ---         ---     ---    
+|   |           |           |       |
  --- --- --- --- --- --- --- --- ---
 done path - 1:
 start path - 2:
@@ -106,5 +106,5 @@ Start - Find shortest path with least turns:
  --- --- --- --- --- --- --- --- ---
 steps: 23 - 00SLFFFRFLFLFRFFFFRFFRFFFF
 Done - Shortest path with least turns found!
-Start - Write path plan to ./PathPlanFound.txt
-Done - Path plan written to ./PathPlanFound.txt
+Start - Write path plan to ./SolutionPath.txt
+Done - Path plan written to ./SolutionPath.txt

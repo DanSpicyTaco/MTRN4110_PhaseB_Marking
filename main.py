@@ -103,18 +103,28 @@ def taskB(solution, answer):
     # Find the correct paths (in RIP time complexity)
     correct_paths = 0
     for i, soln_path in enumerate(soln_paths):
-        incorrect_path = False
-        stu_path = stu_paths[i]
-        for j, soln_row in enumerate(soln_path):
-            stu_row = stu_path[j]
-            if soln_row != stu_row:
-                incorrect_path = True
-                print(
-                    f'{bcolors.FAIL} Path {i}, Row {i} is incorrect! {bcolors.ENDC}')
-                print(f'\tExpected:\n\t{soln_row}\n\tGot:\n\t{stu_row}\n')
+        match_found = True
 
-        if incorrect_path == False:
+        # Find the same path in stu_paths, if it exists
+        for stu_path in stu_paths:
+            # Compare current stu_path with current soln_path
+            for j, soln_row in enumerate(soln_path):
+                match_found = True
+                if soln_row != stu_path[j]:
+                    match_found = False
+                    break
+
+            # The current stu_path matches soln_path!
+            if match_found == True:
+                stu_paths.remove(stu_path)
+                break
+
+        if match_found == True:
             correct_paths += 1
+            continue
+        elif match_found == False:
+            print(
+                f'{bcolors.FAIL} Could not find solution path {i} in student paths {bcolors.ENDC}')
 
     # Calculate the mark for this phase
     if correct_paths == len(soln_paths):
