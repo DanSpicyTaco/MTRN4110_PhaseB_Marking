@@ -191,12 +191,17 @@ def taskB(solution, answer):
     print(f'{colour} Task B: {b_mark}/50 {bcolors.ENDC}')
 
 # TODO
+###
 # Task C: check the least turns path is valid
+###
 
 # TODO
+###
 # Task D: given the absolute path of the file, check if the path is correct
+###
 
 
+# This is where the actual marking happens
 with open("solution.txt", "r") as solution:
     with open("answer.txt", "r") as answer:
         taskA(solution, answer)
