@@ -22,19 +22,19 @@ os.system("./sln > solution.txt")
 def taskA(solution, answer):
     # Get our solution's map, without outer walls
     soln_map = []
-    if(solution.readline().strip() == "Start - Read map:"):
-        line = solution.readline().strip()
+    if(solution.readline().rstrip() == "Start - Read map:"):
+        line = solution.readline().rstrip()
         while line != "Done - Map read!":
             soln_map.append(line)
-            line = solution.readline().strip()
+            line = solution.readline().rstrip()
 
     # Get the student's map
     stu_map = []
-    if(answer.readline().strip() == "Start - Read map:"):
-        line = answer.readline().strip()
+    if(answer.readline().rstrip() == "Start - Read map:"):
+        line = answer.readline().rstrip()
         while line != "Done - Map read!":
             stu_map.append(line)
-            line = answer.readline().strip()
+            line = answer.readline().rstrip()
 
     # Check if they're the same
     correct_rows = 0
@@ -67,6 +67,11 @@ def taskA(solution, answer):
 ###
 
 
+def printMap(map):
+    for row in map:
+        print(f'{row}\n')
+
+
 def compare_maps(soln_map, stu_map):
     # Compare current stu_path with current soln_path
     for i, soln_row in enumerate(soln_map):
@@ -77,13 +82,14 @@ def compare_maps(soln_map, stu_map):
 
 
 def taskB(solution, answer):
+    #! Note: this removes duplicate shortest paths from the students answer
     # Throw away first line - should be "Start - Find shortest paths:"
     solution.readline()
     answer.readline()
 
     # Get all the shortest paths printed out in the solution
     soln_paths = []
-    line = solution.readline().strip()
+    line = solution.readline().rstrip()
     while line != "Done - Find shortest paths":
         # New path has started
         if "start path -" in line:
@@ -93,11 +99,11 @@ def taskB(solution, answer):
         else:
             soln_path.append(line)
 
-        line = solution.readline().strip()
+        line = solution.readline().rstrip()
 
     # Get all the shortest paths printed out in the student answer
     stu_paths = []
-    line = answer.readline().strip()
+    line = answer.readline().rstrip()
     while line != "Done - Find shortest paths":
         # New path has started
         if "start path -" in line:
@@ -107,9 +113,11 @@ def taskB(solution, answer):
         else:
             stu_path.append(line)
 
-        line = answer.readline().strip()
+        line = answer.readline().rstrip()
 
-    # TODO: remove duplicates here
+    # Remove duplicate paths in stu_paths
+    # Copied from SO (lol)
+    stu_paths = sorted(map(list, set(map(tuple, stu_paths))))
 
     # Find the correct paths (in RIP time complexity)
     actual_correct_paths = len(soln_paths)
@@ -120,20 +128,34 @@ def taskB(solution, answer):
         # Find the same path in stu_paths, if it exists
         for stu_path in stu_paths:
             if compare_maps(soln_path, stu_path) == True:
-                # stu_paths.remove(stu_path)
+                stu_paths.remove(stu_path)
                 match_found = True
                 break
 
         if match_found == True:
-            # soln_paths.remove(soln_path)
             correct_paths += 1
         else:
             print(
                 f'{bcolors.FAIL} Could not find solution path {i} in student paths {bcolors.ENDC}')
 
-    # TODO - what happens if there are more student solns than our solns?
-    # if len(stu_paths) != 0:
-        # print(f'{len(stu_paths)} paths in the student paths were either not shortest paths, invalid or duplicates')
+    # If there are leftover paths - deal with this manually
+    # All paths here are not the shortest, but you may be able to get marks anyway
+    valid_paths = 0
+    if len(stu_paths) != 0:
+        print(
+            f'{len(stu_paths)} paths in the student answer are either invalid or not the shortest path')
+
+        for path in stu_paths:
+            printMap(path)
+            ans = input("Is this path valid? [y/Y/n/N] ")
+
+            while True:
+                if ans == "y" or ans == "n":
+                    break
+                ans = input("Please enter y/Y/n/N ")
+
+            if ans.lower() == "y":
+                valid_paths += 1
 
     # Calculate the mark for this phase
     if correct_paths == actual_correct_paths:
@@ -141,10 +163,26 @@ def taskB(solution, answer):
         b_mark = 50
         colour = bcolors.OKGREEN
     elif correct_paths > 0:
-        # TODO - figure out how to calculate this!
         # Partial marks
-        b_mark = correct_paths
-        colour = bcolors.OKGREEN
+        b_mark = 0
+
+        # +30 for the first shortest path, +10 for every shortest path after that
+        first_path = True
+        for i in range(correct_paths):
+            b_mark += 30 if first_path else 10
+            first_path = False
+
+        # +15 for the first valid path, +5 for every one after that
+        first_path = True
+        for i in range(valid_paths):
+            b_mark += 15 if first_path else 5
+            first_path = False
+
+        # Maximum marks obtainable is 40
+        if(b_mark > 40):
+            b_mark = 40
+
+        colour = bcolors.WARNING
     else:
         # No marks
         b_mark = 0
