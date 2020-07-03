@@ -1,4 +1,4 @@
-Start - Read map:
+--- Task 1 ---
  --- --- --- --- --- --- --- --- --- 
 | v             |                   |
      ---                 ---         
@@ -10,9 +10,8 @@ Start - Read map:
          ---         ---     ---     
 |   |           |           |       |
  --- --- --- --- --- --- --- --- --- 
-Done - Map read!
-Start - Find shortest paths:
-start path - 0:
+--- Task 2 ---
+--- Path 1 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13| 10  9   8   7   6 |
      ---                 ---        
@@ -24,8 +23,7 @@ start path - 0:
          ---         ---     ---    
 |   |           |           |       |
  --- --- --- --- --- --- --- --- ---
-done path - 0:
-start path - 1:
+--- Path 2 ---
  --- --- --- --- --- --- --- --- ---
 | v             |                   |
      ---                 ---        
@@ -37,8 +35,7 @@ start path - 1:
          ---         ---     ---    
 |   |           | 8   7   6 |       |
  --- --- --- --- --- --- --- --- ---
-done path - 1:
-start path - 2:
+--- Path 3 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13|                   |
      ---                 ---        
@@ -50,8 +47,7 @@ start path - 2:
          ---         ---     ---    
 |   |           | 8   7   6 |       |
  --- --- --- --- --- --- --- --- ---
-done path - 2:
-start path - 3:
+--- Path 4 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13|     9   8   7   6 |
      ---                 ---        
@@ -63,8 +59,7 @@ start path - 3:
          ---         ---     ---    
 |   |           |           |       |
  --- --- --- --- --- --- --- --- ---
-done path - 3:
-start path - 4:
+--- Path 5 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13| 10  9   8   7     |
      ---                 ---        
@@ -76,8 +71,7 @@ start path - 4:
          ---         ---     ---    
 |   |           |           |       |
  --- --- --- --- --- --- --- --- ---
-done path - 4:
-start path - 5:
+--- Path 6 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13|     9   8   7     |
      ---                 ---        
@@ -89,10 +83,7 @@ start path - 5:
          ---         ---     ---    
 |   |           |           |       |
  --- --- --- --- --- --- --- --- ---
-done path - 5:
-6 shortest paths found
-Done - Find shortest paths
-Start - Find shortest path with least turns:
+--- Task 3 ---
  --- --- --- --- --- --- --- --- ---
 | v   15  14  13| 10  9   8   7   6 |
      ---                 ---        
@@ -104,7 +95,8 @@ Start - Find shortest path with least turns:
          ---         ---     ---    
 |   |           |           |       |
  --- --- --- --- --- --- --- --- ---
-steps: 23 - 00SLFFFRFLFLFRFFFFRFFRFFFF
-Done - Shortest path with least turns found!
+Steps: 23
+Path: 00SLFFFRFLFLFRFFFFRFFRFFFF
+--- Task 4 ---
 Start - Write path plan to ./SolutionPath.txt
 Done - Path plan written to ./SolutionPath.txt
