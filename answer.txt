@@ -98,5 +98,5 @@
 Steps: 23
 Path: 00SLFFFRFLFLFRFFFFRFFRFFFF
 --- Task 4 ---
-Start - Write path plan to ./SolutionPath.txt
-Done - Path plan written to ./SolutionPath.txt
+File: ./PathPlanFound.txt
+Path: 00SLFFFRFLFLFRFFFFRFFRFFFF

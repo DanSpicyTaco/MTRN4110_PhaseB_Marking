@@ -274,6 +274,7 @@ def taskC(solution, answer):
                                 c_mark += 5
                         else:
                             break
+                    c_mark = 15 if c_mark > 15 else c_mark
             else:
                 # +10 for finding a shortest path with least turns
                 print(
@@ -289,6 +290,7 @@ def taskC(solution, answer):
             c_mark += 20
 
     colour = bcolors.OKGREEN if c_mark == 30 else bcolors.WARNING
+    colour = bcolors.FAIL if c_mark == 0 else colour
 
     print(f'{colour} Task C: {c_mark}/30 {bcolors.ENDC}')
 
@@ -297,8 +299,37 @@ def taskC(solution, answer):
 # Task D: given the absolute path of the file, check if the path is correct
 ###
 
-def taskD(solution, answer):
-    pass
+def taskD(answer):
+    f = answer.readline().rstrip()
+    path = answer.readline().rstrip()
+
+    if "File: " not in f or "Path: " not in path:
+        d_mark = 0
+    else:
+        d_mark = 0
+        f = f.replace("File: ", "")
+        path = path.replace("Path: ", "")
+        with open(f, "r") as stu_file:
+            stu_path = stu_file.readline().rstrip()
+            if stu_path == path:
+                d_mark += 10
+            else:
+                print(
+                    f'{bcolors.FAIL} Wrong path. Got {stu_path}. Expected {path} {bcolors.ENDC}')
+                # +2% for every 3 correct steps (consecutive)
+                for s_index, s in enumerate(stu_path):
+                    if s == path[s_index]:
+                        if s_index % 3 == 0:
+                            d_mark += 2
+                    else:
+                        break
+
+                d_mark = 8 if d_mark > 8 else d_mark
+
+    colour = bcolors.OKGREEN if d_mark == 10 else bcolors.WARNING
+    colour = bcolors.FAIL if d_mark == 0 else colour
+    print(f'{colour} Task D: {d_mark}/10 {bcolors.ENDC}')
+
 
 # Generate our own answer
 os.system("./sln > solution.txt")
@@ -309,4 +340,4 @@ with open("solution.txt", "r") as solution:
         taskA(solution, answer)
         taskB(solution, answer)
         taskC(solution, answer)
-        taskD(solution, answer)
+        taskD(answer)
