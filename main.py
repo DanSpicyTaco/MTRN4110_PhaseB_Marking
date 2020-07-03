@@ -1,3 +1,4 @@
+import platform
 import os
 
 
@@ -332,7 +333,10 @@ def taskD(answer):
 
 
 # Generate our own answer
-os.system("./sln > solution.txt")
+if platform.system() == 'Windows':
+    os.system("winsln.exe > solution.txt")
+else:
+    os.system("./sln > solution.txt")
 
 # This is where the actual marking happens
 with open("solution.txt", "r") as solution:
