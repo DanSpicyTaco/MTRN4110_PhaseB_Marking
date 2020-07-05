@@ -182,16 +182,16 @@ def taskB(solution, answer):
         # Partial marks
         b_mark = 0
 
-        # +30 for the first shortest path, +10 for every shortest path after that
+        # +20 for the first shortest path, +4 for every shortest path after that
         first_path = True
         for i in range(correct_paths):
-            b_mark += 30 if first_path else 10
+            b_mark += 20 if first_path else 4
             first_path = False
 
-        # +15 for the first valid path, +5 for every one after that
+        # +10 for the first valid path, +2 for every one after that
         first_path = True
         for i in range(valid_paths):
-            b_mark += 15 if first_path else 5
+            b_mark += 10 if first_path else 2
             first_path = False
 
         # Maximum marks obtainable is 40
