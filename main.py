@@ -118,6 +118,7 @@ def get_paths(f):
             path.append(line)
 
         line = f.readline().rstrip()
+    paths.append(path) # Append final path
     return paths
 
 
