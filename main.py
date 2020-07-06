@@ -118,7 +118,7 @@ def get_paths(f):
             path.append(line)
 
         line = f.readline().rstrip()
-    paths.append(path) # Append final path
+    paths.append(path)  # Append final path
     return paths
 
 
@@ -309,7 +309,7 @@ def taskD(answer):
         d_mark = 0
     else:
         d_mark = 0
-        f = f.replace("File: ", "")
+        f = "./PathPlanFound.txt"
         path = path.replace("Path: ", "")
         with open(f, "r") as stu_file:
             stu_path = stu_file.readline().rstrip()
