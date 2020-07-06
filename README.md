@@ -35,7 +35,7 @@ To avoid having to re-download this repository every time a bug is fixed, you ca
 | :--------------------------------------------------------------------------------------------------- | :----: |
 | Final path wasn't added to the `get_paths` function, taking off marks for a correct answer.          | Fixed  |
 | Student's `PathPlanFound.txt` was in a different location to the automarker's repo, giving an error. | Fixed  |
-| Linux is not supported - the `./sln` is outdated.                                                    | Fixing |
+| Linux is not supported - the `./sln` is outdated.                                                    | Fixed  |
 
 ## Contribution
 

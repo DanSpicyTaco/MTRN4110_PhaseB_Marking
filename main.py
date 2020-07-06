@@ -336,6 +336,8 @@ def taskD(answer):
 # Generate our own answer
 if platform.system() == 'Windows':
     os.system("winsln.exe > solution.txt")
+elif platform.system() == 'Linux':
+    os.system("./linuxsln > solution.txt")
 else:
     os.system("./sln > solution.txt")
 
