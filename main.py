@@ -161,7 +161,7 @@ def taskB(solution, answer):
             correct_paths += 1
         else:
             print(
-                f'{bcolors.FAIL} Could not find solution path {i} in student paths {bcolors.ENDC}')
+                f'{bcolors.FAIL} Could not find solution path {i+1} in student paths {bcolors.ENDC}')
 
     # If there are leftover paths - deal with this manually
     # All paths here are not the shortest, but you may be able to get marks anyway
