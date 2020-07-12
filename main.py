@@ -1,6 +1,6 @@
 import platform, os, shutil
 
-map_count = 8
+map_count = 18
 
 class bcolors:
     HEADER = '\033[95m'
