@@ -1,6 +1,6 @@
-import platform
-import os
+import platform, os, shutil
 
+map_count = 18
 
 class bcolors:
     HEADER = '\033[95m'
@@ -333,18 +333,33 @@ def taskD(answer):
     print(f'{colour} Task D: {d_mark}/10 {bcolors.ENDC}')
 
 
-# Generate our own answer
-if platform.system() == 'Windows':
-    os.system("winsln.exe > solution.txt")
-elif platform.system() == 'Linux':
-    os.system("./linuxsln > solution.txt")
-else:
-    os.system("./sln > solution.txt")
+if __name__ == "__main__":
+    for m in range(map_count):
+        # Set map
+        if os.path.isfile("./Map.txt"):
+            os.remove("./Map.txt")
+        shutil.copy(f"./Maps/Map{m}.txt", "./Map.txt")
 
-# This is where the actual marking happens
-with open("solution.txt", "r") as solution:
-    with open("answer.txt", "r") as answer:
-        taskA(solution, answer)
-        taskB(solution, answer)
-        taskC(solution, answer)
-        taskD(answer)
+        # Print map
+        print(f"Map {m}")
+        f = open('./Map.txt', 'r')
+        file_contents = f.read()
+        print(file_contents)
+        f.close()
+
+        # Generate solution and answer
+        if platform.system() == 'Windows':
+            os.system("winsln.exe > solution.txt")
+        elif platform.system() == 'Linux':
+            os.system("./linuxsln > solution.txt")
+        else:
+            os.system("cd f1/f2/ && ./ans > ../../answer.txt")
+            os.system("./sln > solution.txt")
+
+        # This is where the actual marking happens
+        with open("solution.txt", "r") as solution:
+            with open("answer.txt", "r") as answer:
+                taskA(solution, answer)
+                taskB(solution, answer)
+                taskC(solution, answer)
+                taskD(answer)

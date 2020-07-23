@@ -2,22 +2,23 @@
 
 This is the marking script for Phase B.
 
-## Usage
+## Setup
 
 Please note, this installation process is OS-independent, meaning it should work for Windows, OSX and Linux.
 
-1. Download Python from the [Python website](https://www.python.org/downloads/) (yellow button that says “_Download Python X_").
-   Doing this will also install an application called IDLE.
-2. Go to GitHub and download this repository.
+1. **Download Python** from the [Python website](https://www.python.org/downloads/) (yellow button that says “_Download Python X_").
+   Doing this will also install an application called IDLE. 
+
+   Mac users are recommended to download python through the HomeBrew package manager
+2. **Clone repository**. Go to GitHub and download this repository.
    Do this by clicking the green button labelled _“Code”_, then “_Download ZIP_”.
    Extract the download to wherever you want.
-3. Open IDLE, then go to “_File -> Open_”. Navigate to the extracted ZIP file and open “_main.py_”.
-4. Once the file is opened, you can run it with “_Run -> Run Module_”.
+3. **Open file**. Open IDLE, then go to “_File -> Open_”. Navigate to the extracted ZIP file and open “_main.py_”.
+4. **Run file with demo answer**. Once the file is opened, you can run it with “_Run -> Run Module_”.
    The script runs our solution with "_Map.txt_" and compares the answer to what is given in “_answer.txt_”.
    Furthermore, “_PathPlanFound.txt_” should contain your path plan (see Section 3.4).
-5. To make the script check your solution, copy and paste the output from Webots into “answer.txt”.
-   Make sure the controller name (e.g. _[z1234567_MTRN4110_PhaseB]_) prefix is omitted in each line.
-   You can do this with find and replace (replace with an empty value) on your text editor of choice (e.g. Notepad++, VS Code).
+5. **Run with your answer**. To make the script check your solution, copy and paste, your controller executable in `f1/f2/`. 
+   Rename the executable from `z1234567_MTRN4110_PhaseB` to `ans` so it's path is `./f1/f2/ans`.
 
 ### Using Git to keep up-to-date
 
