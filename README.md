@@ -6,19 +6,18 @@ This is the marking script for Phase B.
 
 Please note, this installation process is OS-independent, meaning it should work for Windows, OSX and Linux.
 
-1. **Download Python** from the [Python website](https://www.python.org/downloads/) (yellow button that says “_Download Python X_").
-   Doing this will also install an application called IDLE. 
+1. **Download Python** from the [Python website](https://www.python.org/downloads/) (yellow button that says "_Download Python X_").
+   Doing this will also install an application called IDLE.
 
    Mac users are recommended to download python through the HomeBrew package manager
+
 2. **Clone repository**. Go to GitHub and download this repository.
-   Do this by clicking the green button labelled _“Code”_, then “_Download ZIP_”.
+   Do this by clicking the green button labelled _"Code"_, then "_Download ZIP_".
    Extract the download to wherever you want.
-3. **Open file**. Open IDLE, then go to “_File -> Open_”. Navigate to the extracted ZIP file and open “_main.py_”.
-4. **Run file with demo answer**. Once the file is opened, you can run it with “_Run -> Run Module_”.
-   The script runs our solution with "_Map.txt_" and compares the answer to what is given in “_answer.txt_”.
-   Furthermore, “_PathPlanFound.txt_” should contain your path plan (see Section 3.4).
-5. **Run with your answer**. To make the script check your solution, copy and paste, your controller executable in `f1/f2/`. 
-   Rename the executable from `z1234567_MTRN4110_PhaseB` to `ans` so it's path is `./f1/f2/ans`.
+3. **Open file**. Open IDLE, then go to "_File -> Open_". Navigate to the extracted ZIP file and open "_main.py_".
+4. **Run file with your answer**. Once the file is opened, you can run it with "_Run -> Run Module_".
+   The script runs our solution with "_Maps/Map<MAP NUMBER>.txt_" and compares the answer to what is given in "_Answers/answer<MAP NUMBER>.txt_".
+   Furthermore, "_Answers/PathPlanFound<MAP NUMBER>.txt_" should contain your path plan (see Section 3.4).
 
 ### Using Git to keep up-to-date
 
@@ -32,12 +31,13 @@ To avoid having to re-download this repository every time a bug is fixed, you ca
 
 ## Known Bugs
 
-| Bug                                                                                                  | Status |
-| :--------------------------------------------------------------------------------------------------- | :----: |
-| Final path wasn't added to the `get_paths` function, taking off marks for a correct answer.          | Fixed  |
-| Student's `PathPlanFound.txt` was in a different location to the automarker's repo, giving an error. | Fixed  |
-| Linux is not supported - the `./sln` is outdated.                                                    | Fixed  |
-| Current solution file does not support paths of steps > 40.                                          | Fixed  |
+| Bug                                                                                                  |  Status   |
+| :--------------------------------------------------------------------------------------------------- | :-------: |
+| Final path wasn't added to the `get_paths` function, taking off marks for a correct answer.          |   Fixed   |
+| Student's `PathPlanFound.txt` was in a different location to the automarker's repo, giving an error. |   Fixed   |
+| Linux is not supported - the `./sln` is outdated.                                                    |   Fixed   |
+| Current solution file does not support paths of steps > 40.                                          |   Fixed   |
+| Solution does not accept a Map.txt that ends with a newline                                          | Not fixed |
 
 ## Contribution
 

@@ -1,6 +1,9 @@
-import platform, os, shutil
+import platform
+import os
+import shutil
 
 map_count = 18
+
 
 class bcolors:
     HEADER = '\033[95m'
@@ -301,7 +304,7 @@ def taskC(solution, answer):
 # Task D: given the absolute path of the file, check if the path is correct
 ###
 
-def taskD(answer):
+def taskD(answer, m):
     f = answer.readline().rstrip()
     path = answer.readline().rstrip()
 
@@ -309,7 +312,7 @@ def taskD(answer):
         d_mark = 0
     else:
         d_mark = 0
-        f = "./PathPlanFound.txt"
+        f = f"./Answers/PathPlanFound{m}.txt"
         path = path.replace("Path: ", "")
         with open(f, "r") as stu_file:
             stu_path = stu_file.readline().rstrip()
@@ -333,33 +336,39 @@ def taskD(answer):
     print(f'{colour} Task D: {d_mark}/10 {bcolors.ENDC}')
 
 
-if __name__ == "__main__":
-    for m in range(map_count):
-        # Set map
-        if os.path.isfile("./Map.txt"):
-            os.remove("./Map.txt")
-        shutil.copy(f"./Maps/Map{m}.txt", "./Map.txt")
+for m in range(map_count):
+    # Make sure we're only testing answers that exist
+    try:
+        open(f"./Answers/answer{m}.txt", "r")
+        open(f"./Answers/PathPlanFound{m}.txt", "r")
+    except OSError as e:
+        print(f"{bcolors.FAIL} Failed to find answer{m}.txt or PathPlanFound{m}.txt.\nPlease check the Answers directory {bcolors.ENDC}")
+        exit(0)
 
-        # Print map
-        print(f"Map {m}")
-        f = open('./Map.txt', 'r')
-        file_contents = f.read()
-        print(file_contents)
-        f.close()
+    # Copy a test map into ./Map.txt
+    if os.path.isfile("./Map.txt"):
+        os.remove("./Map.txt")
+    shutil.copy(f"./Maps/Map{m}.txt", "./Map.txt")
 
-        # Generate solution and answer
-        if platform.system() == 'Windows':
-            os.system("winsln.exe > solution.txt")
-        elif platform.system() == 'Linux':
-            os.system("./linuxsln > solution.txt")
-        else:
-            os.system("cd f1/f2/ && ./ans > ../../answer.txt")
-            os.system("./sln > solution.txt")
+    # Print the current Map we're testing with
+    print(f"=== Map {m} ===")
+    f = open('./Map.txt', 'r')
+    file_contents = f.read()
+    print(file_contents)
+    f.close()
 
-        # This is where the actual marking happens
-        with open("solution.txt", "r") as solution:
-            with open("answer.txt", "r") as answer:
-                taskA(solution, answer)
-                taskB(solution, answer)
-                taskC(solution, answer)
-                taskD(answer)
+    # Generate solution and answer
+    if platform.system() == 'Windows':
+        os.system("winsln.exe > solution.txt")
+    elif platform.system() == 'Linux':
+        os.system("./linuxsln > solution.txt")
+    else:
+        os.system("./sln > solution.txt")
+
+    # This is where the actual marking happens
+    with open("solution.txt", "r") as solution:
+        with open(f"./Answers/answer{m}.txt", "r") as answer:
+            taskA(solution, answer)
+            taskB(solution, answer)
+            taskC(solution, answer)
+            taskD(answer, m)
